@@ -1,0 +1,48 @@
+.progress_history {
+	display: inline-block;
+	padding: 5px;
+	vertical-align: top;
+	font-size: 110%;
+}
+
+.progress_history li {
+	padding: 3px;
+	width: 6em;
+}
+
+.progress_history .title {
+	background-color: #008A00;
+	color: #FFFFFF;
+}
+
+.progress_history .item {
+	padding-left: 10px;
+}
+
+.progress_history strong {
+	color: red;
+	font-style: italic;
+}
+
+.progress_history sup {
+	font-size: xx-small;
+}
+
+.progress_history .progross {
+	color: green;
+}
+
+#error_courseunit {
+	float: left;
+	margin: 1em 0 0 1em;
+	padding: 10px 5px;
+	border-top: 5px solid #85639c;
+}
+
+#error_courseunit a {
+	display: inline-block;
+}
+
+#first_error {
+	border: 5px solid red;
+}

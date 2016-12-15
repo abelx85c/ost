@@ -1,0 +1,85 @@
+/**
+ * 新增教師按鈕樣式
+ */
+.add {
+	padding: 5px !important;
+	text-align: right;
+}
+
+.add .add_link {
+	margin-bottom: 0;
+}
+
+/**
+ * 新增職稱
+ */
+#title_form_command {
+	padding: 0.5em 0 0.5em 0;
+}
+
+#title_form_command * {
+	display: inline-block;
+}
+
+/**
+ * 	設定需求樣式
+ */
+.is_require {
+	padding-right: 5px !important;
+	width: 5em;
+	text-align: center;
+}
+
+.is_require div {
+	padding: 5px;
+	border-radius: 7px;
+	background-color: #60a917;
+	color: #FFFFFF;
+	text-shadow: 1px 1px #111111;
+}
+
+/**
+ * 	管理者樣式
+ */
+.is_admin {
+	padding-right: 5px !important;
+	width: 4em;
+	text-align: center;
+}
+
+.is_admin div {
+	padding: 5px;
+	border-radius: 7px;
+	background-color: #F0A30A;
+	color: #FFFFFF;
+	text-shadow: 1px 1px #111111;
+}
+
+/**
+ * 	應上節數padding調整
+ */
+.teacher_course_count {
+	padding-right: 5px !important;
+}
+
+/**
+ * 	職稱樣式
+ */
+.row_item li a {
+	min-width: 10em;
+}
+
+/**
+ * 	排序表格樣式
+ */
+.sortable th:not(.sorttable_nosort) {
+	cursor: pointer;
+}
+
+.sortable th:not(.sorttable_nosort):hover {
+	background-color: #7b7b7b;
+}
+
+.sortable tr th.sorttable_sorted {
+	background-color: #7b7b7b;
+}
