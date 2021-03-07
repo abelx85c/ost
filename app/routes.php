@@ -2,6 +2,7 @@
 /**
  * 首頁，導向班級課表查詢
  */
+
 Route::get('/', function()
 {
 	return Redirect::to('class_table')->with('message', Session::get('message'));

@@ -1,0 +1,152 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/row_item/style_1.css'); ?>
+	<?php echo HTML::style('css/column_item/style_2.css'); ?>
+	<?php echo HTML::style('css/js/course_time_selector.css'); ?>
+	<?php echo HTML::style('css/table/query.css'); ?>
+	<?php echo HTML::style('css/classroom_table.css'); ?>				
+<?php $__env->stopSection(); ?>
+
+<?php View::share('titlePrefix', '教室課表查詢'); ?>
+<?php View::share('selectUrl', 'classroom_table'); ?>
+
+<?php $__env->startSection('content'); ?>
+	<h1>教室課表查詢</h1>
+		
+	<?php if (isset($classsroomList)): ?>
+		<div class="column_item column_item_style_2" id="classroom_column">
+			<ul>
+				<?php foreach ($classsroomList as $classroom): ?>
+					<li class = "<?php echo (isset($classroomId) && $classroom->classroom_id == $classroomId) ? 'column_item_selected' : ''; ?>">
+				    	<?php echo link_to('classroom_table/' . $classroom->classroom_id, $classroom->classroom_name); ?>
+				    </li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+	
+	<?php if (isset($classsroomTimeTable)): ?>
+		<div id="course_time_selector">	
+			<table>
+				<tr id="day_row">
+					<th id="course_time_description">上課時間</th>
+					<th>週一</th>
+					<th>週二</th>
+					<th>週三</th>
+					<th>週四</th>
+					<th>週五</th>
+				</tr>
+				<tr>
+					<td class="course_column">第一節</td>
+					<?php for ($i = 0; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第二節</td>
+					<?php for ($i = 1; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第三節</td>
+					<?php for ($i = 2; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第四節</td>
+					<?php for ($i = 3; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td id="noon_break" colspan="6">午休</td>
+				</tr>
+				<tr>
+					<td class="course_column">第五節</td>
+					<?php for ($i = 4; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第六節</td>
+					<?php for ($i = 5; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第七節</td>
+					<?php for ($i = 6; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classsroomTimeTable[$i] != null): ?>
+								<?php foreach ($classsroomTimeTable[$i] as $course): ?>
+									<?php echo $course['classes_name'] . '&nbsp;' . $course['course_name']; ?>
+									<br>
+									<?php echo '《' . $course['teacher_name'] . '》'; ?>									
+									<?php echo (next($classsroomTimeTable[$i])) ? '<hr>' : ''; ?>																	
+								<?php endforeach; ?>																
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+			</table>
+		</div>	
+	<?php endif; ?>	
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

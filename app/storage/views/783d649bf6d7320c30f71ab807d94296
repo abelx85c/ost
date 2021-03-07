@@ -1,0 +1,21 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/form/login.css'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php View::share('titlePrefix', '登入'); ?>
+<?php View::share('selectUrl', 'login'); ?>
+
+<?php $__env->startSection('content'); ?>	
+	<h1>登入</h1>
+	
+	<?php echo Helper::message(); ?>
+	
+	<?php echo FormList::open('', 'login'); ?>
+	<?php echo FormList::text('teacher_account', '帳號', array('required' => 'required', 'autofocus' => 'autofocus')); ?>
+	<?php echo FormList::password('teacher_password', '密碼', array('required' => 'required')); ?>
+	<?php echo FormList::submit('登入'); ?>
+	<?php echo FormList::close(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
