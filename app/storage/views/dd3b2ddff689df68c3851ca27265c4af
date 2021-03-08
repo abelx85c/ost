@@ -1,0 +1,145 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/row_item/style_2.css'); ?>
+	<?php echo HTML::style('css/column_item/style_1.css'); ?>
+	<?php echo HTML::style('css/js/course_time_selector.css'); ?>
+	<?php echo HTML::style('css/table/query.css'); ?>
+	<?php echo HTML::style('css/class_table.css'); ?>			
+<?php $__env->stopSection(); ?>
+
+<?php View::share('titlePrefix', '班級課表查詢'); ?>
+<?php View::share('selectUrl', 'class_table'); ?>
+
+<?php $__env->startSection('content'); ?>
+	<h1>班級課表查詢</h1>	
+	
+	<?php echo Helper::message(); ?>
+	
+	<?php if (isset($yearList)): ?>
+		<div class="row_item row_item_style_2" id="year_row">
+			<ul>		
+		    	<?php foreach ($yearList as $yearItem): ?>
+		    		<li class = "<?php echo (isset($yearId) && $yearItem->year_id == $yearId) ? 'row_item_selected' : ''; ?>">
+		    			<?php echo link_to('class_table/' . $yearItem->year_id, $yearItem->year_name . '（' . $yearItem->classes()->count() . '）'); ?>
+		    		</li>
+		    	<?php endforeach; ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+	
+	<?php if (isset($classes)): ?>
+		<div class="column_item column_item_style_1" id="class_column">
+			<ul>		
+		    	<?php foreach ($classes as $classItem): ?>
+		    		<li class = "<?php echo (isset($classesId) && $classItem->classes_id == $classesId) ? 'column_item_selected' : ''; ?>">		    										    		
+		    			<?php echo link_to('class_table/' . $yearId . '/' . $classItem->classes_id, (count($classItem->teacher) != 0) ? $classItem->classes_name . '（' . $classItem->teacher->teacher_name . '）' : $classItem->classes_name); ?>		    			
+		    		</li>
+		    	<?php endforeach; ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+		
+	<?php if (isset($classTimeTable)): ?>
+		<div id="course_time_selector">	
+			<table>
+				<tr id="day_row">
+					<th id="course_time_description">上課時間</th>
+					<th>週一</th>
+					<th>週二</th>
+					<th>週三</th>
+					<th>週四</th>
+					<th>週五</th>
+				</tr>
+				<tr>
+					<td class="course_column">第一節</td>
+					<?php for ($i = 0; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第二節</td>
+					<?php for ($i = 1; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第三節</td>
+					<?php for ($i = 2; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第四節</td>
+					<?php for ($i = 3; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td id="noon_break" colspan="6">午休</td>
+				</tr>
+				<tr>
+					<td class="course_column">第五節</td>
+					<?php for ($i = 4; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第六節</td>
+					<?php for ($i = 5; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第七節</td>
+					<?php for ($i = 6; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($classTimeTable[$i] != null): ?>
+								<?php echo $classTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $classTimeTable[$i]['teacher_name']; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+			</table>
+		</div>	
+	<?php endif; ?>	
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
