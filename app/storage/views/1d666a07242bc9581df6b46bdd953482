@@ -1,0 +1,26 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/form/change_password.css'); ?>	
+<?php $__env->stopSection(); ?>
+
+<?php View::share('titlePrefix', '變更《' . Auth::user()->teacher_name . '》的密碼') ?>
+<?php View::share('selectUrl', 'change_password'); ?>
+
+<?php $__env->startSection('content'); ?>			
+	<h1><?php echo '變更《' . Auth::user()->teacher_name . '》的密碼'; ?></h1>
+
+	<?php echo Helper::message(); ?>
+
+	<?php echo FormList::open(Auth::user(), 'change_password/' . Auth::user()->teacher_id); ?>		
+	<?php echo FormList::description('請輸入舊密碼、新密碼'); ?>
+	<br>
+	<?php echo FormList::password('old_teacher_password', '舊密碼'); ?>			
+	<br>
+	<?php echo FormList::password('teacher_password', '新密碼'); ?>
+	<?php echo FormList::password('teacher_password_confirmation', '確認密碼'); ?>
+	<br>
+	<?php echo FormList::submit('變更密碼'); ?>
+	<?php echo FormList::close(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

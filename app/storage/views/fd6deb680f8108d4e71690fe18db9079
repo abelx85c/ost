@@ -1,0 +1,30 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/form/teacher_require.css'); ?>
+	<?php echo HTML::style('css/js/course_time_selector.css'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('js'); ?>
+	<?php echo HTML::script('js/course_time_selector.js'); ?>	
+<?php $__env->stopSection(); ?>
+
+<?php View::share('titlePrefix', '設定《' . Auth::user()->teacher_name . '》的排課需求') ?>
+<?php View::share('selectUrl', 'teacher_require'); ?>
+
+<?php $__env->startSection('content'); ?>			
+	<h1><?php echo '設定《' . Auth::user()->teacher_name . '》的排課需求'; ?></h1>
+
+	<?php echo Helper::message(); ?>
+
+	<?php echo FormList::open(Auth::user(), 'teacher_require/' . Auth::user()->teacher_id); ?>	
+	<?php echo FormList::hidden('course_time'); ?>	
+	<br>		
+	<li id="teacher_course_time">			
+		<?php echo $__env->make('course_time_selector', array('course_time' => Auth::user()->course_time), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</li>
+	<br>
+	<?php echo FormList::submit('更新'); ?>
+	<?php echo FormList::close(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
