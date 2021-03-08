@@ -1,0 +1,160 @@
+
+<?php $__env->startSection('css'); ?>
+	<?php echo HTML::style('css/row_item/style_1.css'); ?>
+	<?php echo HTML::style('css/column_item/style_2.css'); ?>
+	<?php echo HTML::style('css/js/course_time_selector.css'); ?>
+	<?php echo HTML::style('css/table/query.css'); ?>
+	<?php echo HTML::style('css/teacher_table.css'); ?>				
+<?php $__env->stopSection(); ?>
+
+<?php View::share('titlePrefix', '教師課表查詢'); ?>
+<?php View::share('selectUrl', 'teacher_table'); ?>
+
+<?php $__env->startSection('content'); ?>
+	<h1>教師課表查詢</h1>
+	
+	<?php if (isset($titleList)): ?>	
+		<div class="row_item row_item_style_1" id="title_list">
+			<ul>				
+				<li <?php echo (isset($titleId) && $titleId == 'all') ? 'class="row_item_selected"' : ''; ?>><?php echo link_to('teacher_table/all', '全部（' . count(Teacher::All()) . '）'); ?></li>
+				<li <?php echo (isset($titleId) && $titleId == '0') ? 'class="row_item_selected"' : ''; ?>><?php echo link_to('teacher_table/0', '無職稱（' . Teacher::where('title_id', '=', 0)->count() . '）'); ?></li>
+		
+				<?php if (isset($titleList)): ?>
+					<?php foreach ($titleList as $title): ?>
+						<li <?php echo (isset($titleId) && $titleId == $title->title_id) ? 'class="row_item_selected"' : ''; ?>><?php echo link_to('teacher_table/' . $title->title_id, $title->title_name . '（'. $title->teacher()->count() . '）'); ?></li>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+	
+	<?php if (isset($teacherList) && $teacherList->count() != 0): ?>
+		<div class="column_item column_item_style_2" id="teacher_column">
+			<ul>
+				<?php foreach ($teacherList as $teacher): ?>
+					<li class = "<?php echo (isset($teacherId) && $teacher->teacher_id == $teacherId) ? 'column_item_selected' : ''; ?>">
+				    	<?php echo link_to('teacher_table/' . $titleId. '/' . $teacher->teacher_id, $teacher->teacher_name); ?>
+				    </li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+	
+	<?php if (isset($teacherTimeTable)): ?>
+		<div id="course_time_selector">	
+			<table>
+				<tr id="day_row">
+					<th id="course_time_description">上課時間</th>
+					<th>週一</th>
+					<th>週二</th>
+					<th>週三</th>
+					<th>週四</th>
+					<th>週五</th>
+				</tr>
+				<tr>
+					<td class="course_column">第一節</td>
+					<?php for ($i = 0; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第二節</td>
+					<?php for ($i = 1; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第三節</td>
+					<?php for ($i = 2; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第四節</td>
+					<?php for ($i = 3; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td id="noon_break" colspan="6">午休</td>
+				</tr>
+				<tr>
+					<td class="course_column">第五節</td>
+					<?php for ($i = 4; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第六節</td>
+					<?php for ($i = 5; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+				<tr>
+					<td class="course_column">第七節</td>
+					<?php for ($i = 6; $i < 35; $i = $i + 7): ?>
+						<td class="course" id="course_<?php echo $i; ?>">
+							<?php if ($teacherTimeTable[$i] != null): ?>
+								<?php echo $teacherTimeTable[$i]['course_name']; ?>
+								<br>
+								<?php echo $teacherTimeTable[$i]['classes_name']; ?>
+								
+								<?php echo (isset($teacherTimeTable[$i]['classroom_name'])) ? '<br>' . $teacherTimeTable[$i]['classroom_name'] : ''; ?>
+							<?php endif; ?>
+						</td>
+					<?php endfor; ?>
+				</tr>
+			</table>
+		</div>	
+	<?php endif; ?>	
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
